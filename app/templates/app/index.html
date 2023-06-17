@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<title>HTML Tutorial</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<img src="C:\Users\san\Downloads\F1_weight_system-main\F1_weight_system-main\app\f1.jpg"/>
+</head>
+<head>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            width: 500px;
+  justify-content: space-between;
+}
+input{
+    width: 100%;
+    }
+    .toggle{
+        border: 1px rgb(89, 25, 69) solid;
+    }
+    </style>
+</head> 
+
+<div class="px-3 py-2 bg-gray-100 rounded-bg">
+<h1>F1</h1><h5 class="text-3xl text gray-900">weight system</h5>
+
+<div>
+    <h1>Enter Race Info</h1>
+<div>
+    <input class="toggle" type="radio"/>
+</div>
+    <form class="form-horizontal" action="/" method="post">
+        {% csrf_token %}
+        <div class="flex-container">
+
+            <div class="driver">
+                <h3>Driver Info</h3>
+                
+
+                <h4>Name</h4>
+                <input type="text" name="driver">
+
+                <h4>Country</h4>
+                <input type="text" name="driver_country">
+
+
+                <h4>Race country</h4>
+                <input type="text" name="race_country">
+
+                <h4>weight</h4>
+                <input type="number" name="weight_before">
+                
+            </div>
+
+            <div class="team-info">
+
+                <h3>Team Info</h3>
+
+                <h4>Name</h4>
+                <input type="text" name="team">
+
+                <h4>Country</h4>
+                <input type="text" name="team_country">
+            </div>
+
+
+            <div>
+                <input type="submit" name="submit" value="Submit"/>
+            </div>
+        </div>
+
+    </form>
+
+    <form class="form-horizontal" action="/check-weight" method="post">
+        {% csrf_token %}
+        <div class="flex-container">
+
+            <div class="driver">
+
+                <h3>Get Driver Weight Info</h3>
+
+                <h4>Name</h4>
+                <select class="form-control" id="make" name='selected_car'>
+                    {% for driver in drivers %}
+                    <option value='{{driver.id}}'>{{ driver.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <h4>Race country</h4>
+                <select class="form-control" id="make" name='selected_car'>
+                    {% for race in races %}
+                        <option value='{{race.id}}'>{{ race.country }}</option>
+                    {% endfor %}
+                </select>
+
+                <h4>weight</h4>
+                <input type="number" name="weight_after">
+            </div>
+
+
+            <div>
+                <input type="submit" name="submit" value="Check Weight" />
+            </div>
+        </div>
+
+    </form>
+</body>
+
+</div>
+</html>
